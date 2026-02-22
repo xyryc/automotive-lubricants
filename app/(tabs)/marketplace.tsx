@@ -3,6 +3,7 @@ import {
   Bell,
   Bike,
   Car,
+  ChevronRight,
   Fuel,
   Grid2x2,
   Search,
@@ -22,12 +23,46 @@ import {
   useSafeAreaInsets,
 } from "react-native-safe-area-context";
 import Categories from "@/components/Categories";
+import ProductCard from "@/components/ProductCard";
 
 const categoryData = [
   { id: "car", name: "Car", image: require("@/assets/car.png") },
   { id: "bike", name: "Bike", image: require("@/assets/bike.png") },
   { id: "cng", name: "CNG", image: require("@/assets/cng.png") },
   { id: "truck", name: "Truck & Buses", image: require("@/assets/bus.png") },
+];
+
+const productData = [
+  {
+    id: "1",
+    name: "PIAA Air Filter PT108",
+    image: require("@/assets/product1.png"),
+  },
+  {
+    id: "2",
+    name: "PIAA Oil Filter Z8M",
+    image: require("@/assets/product2.png"),
+  },
+  {
+    id: "3",
+    name: "PIAA Air Filter PT83",
+    image: require("@/assets/product3.png"),
+  },
+  {
+    id: "4",
+    name: "PIAA Air Filter PT108",
+    image: require("@/assets/product1.png"),
+  },
+  {
+    id: "5",
+    name: "PIAA Oil Filter Z8M",
+    image: require("@/assets/product2.png"),
+  },
+  {
+    id: "6",
+    name: "PIAA Air Filter PT83",
+    image: require("@/assets/product3.png"),
+  },
 ];
 
 export default function MarketplaceScreen() {
@@ -111,7 +146,8 @@ export default function MarketplaceScreen() {
 
       <ScrollView
         contentContainerStyle={{
-          paddingVertical: 32,
+          paddingTop: 32,
+          paddingBottom: 120,
           backgroundColor: "white",
         }}
         bounces={false}
@@ -156,6 +192,17 @@ export default function MarketplaceScreen() {
             resizeMode="stretch"
           />
         </ScrollView>
+
+        {/* featured products */}
+        <Text className="text-2xl font-bold text-[#3B3B3B] px-5 mt-8 mb-4">
+          Featured Products
+        </Text>
+
+        <View className="px-5 flex-row flex-wrap justify-between gap-3">
+          {productData.map((item) => (
+            <ProductCard key={item.id} name={item.name} image={item.image} />
+          ))}
+        </View>
       </ScrollView>
     </SafeAreaView>
   );
