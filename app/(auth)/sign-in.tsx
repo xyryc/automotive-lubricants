@@ -108,8 +108,12 @@ const SignInScreen = () => {
                   onPress={handleSignIn}
                 />
 
-                <TouchableOpacity onPress={() => router.push("/(auth)/sign-up")}>
-                  <Text className="text-white text-center mt-4">Create account</Text>
+                <TouchableOpacity
+                  onPress={() => router.push("/(auth)/sign-up")}
+                >
+                  <Text className="text-white text-center mt-4">
+                    Create account
+                  </Text>
                 </TouchableOpacity>
               </View>
             </View>

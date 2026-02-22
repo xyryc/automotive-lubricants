@@ -14,6 +14,8 @@ import {
 import { RectangleEllipsis, User } from "lucide-react-native";
 import ButtonPrimary from "../../components/ButtonPrimary";
 import { useRouter } from "expo-router";
+import { useAuthStore } from "@/stores/authStore";
+import { showAlert } from "@/lib/alert";
 
 const SignUpScreen = () => {
   const router = useRouter();
@@ -22,19 +24,16 @@ const SignUpScreen = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
 
-  const handleSignUp = () => {
-    if (!username.trim() || !password || !confirmPassword) {
-      setError("Please fill all fields");
-      return;
-    }
+  const signup = useAuthStore((s) => s.signup);
 
-    if (password !== confirmPassword) {
-      setError("Passwords do not match");
-      return;
+  const handleSignUp = async () => {
+    try {
+      await signup(username, password);
+      showAlert("success", "Account created");
+      router.replace("/(tabs)/marketplace"); // auto-login
+    } catch (e: any) {
+      showAlert("error", "Signup failed", e?.message || "Try again");
     }
-
-    setError("");
-    router.replace("/(tabs)/marketplace");
   };
 
   return (
@@ -103,8 +102,12 @@ const SignUpScreen = () => {
                   onPress={handleSignUp}
                 />
 
-                <TouchableOpacity onPress={() => router.push("/(auth)/sign-in")}>
-                  <Text className="text-white text-center mt-4">Back to sign in</Text>
+                <TouchableOpacity
+                  onPress={() => router.push("/(auth)/sign-in")}
+                >
+                  <Text className="text-white text-center mt-4">
+                    Back to sign in
+                  </Text>
                 </TouchableOpacity>
               </View>
             </View>
