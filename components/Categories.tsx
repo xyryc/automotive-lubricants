@@ -1,4 +1,10 @@
-import { View, Text, Image, ImageSourcePropType } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  ImageSourcePropType,
+  TouchableOpacity,
+} from "react-native";
 import React from "react";
 import { LinearGradient } from "expo-linear-gradient";
 
@@ -20,7 +26,7 @@ const Categories = ({ name, image }: CategoriesProps) => {
         width: 84,
       }}
     >
-      <View className="flex-1 rounded-lg bg-white px-2.5 py-2">
+      <TouchableOpacity className="flex-1 rounded-lg bg-white px-2.5 py-2">
         <View className="w-16 h-16 items-center justify-center rounded-full bg-[#EDF6FF]">
           <Image
             source={image}
@@ -35,7 +41,7 @@ const Categories = ({ name, image }: CategoriesProps) => {
         >
           {name}
         </Text>
-      </View>
+      </TouchableOpacity>
     </LinearGradient>
   );
 };

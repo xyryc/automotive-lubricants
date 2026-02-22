@@ -1,4 +1,11 @@
-import { View, Text, Image, ImageSourcePropType } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  ImageSourcePropType,
+  Pressable,
+  TouchableOpacity,
+} from "react-native";
 import React from "react";
 import { ChevronRight } from "lucide-react-native";
 
@@ -9,7 +16,7 @@ type ProductCardProps = {
 
 const ProductCard = ({ name, image }: ProductCardProps) => {
   return (
-    <View className="bg-[#EDF6FF] p-1.5 rounded-lg">
+    <TouchableOpacity className="bg-[#EDF6FF] p-1.5 rounded-lg">
       <View className="w-[100px] h-[100px] bg-white rounded-lg">
         <Image
           source={image}
@@ -28,7 +35,7 @@ const ProductCard = ({ name, image }: ProductCardProps) => {
 
         <ChevronRight size={16} />
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
