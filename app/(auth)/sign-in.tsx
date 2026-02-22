@@ -26,6 +26,17 @@ const SignInScreen = () => {
   const [username, setUsername] = useState("shl0145");
   const [password, setPassword] = useState("");
   const [remember, setRemember] = useState(true);
+  const [error, setError] = useState("");
+
+  const handleSignIn = () => {
+    if (!username.trim() || !password) {
+      setError("Please enter username and password");
+      return;
+    }
+
+    setError("");
+    router.replace("/(tabs)/marketplace");
+  };
 
   return (
     <SafeAreaView className="flex-1 bg-primary">
@@ -68,6 +79,10 @@ const SignInScreen = () => {
                   />
                 </View>
 
+                {error ? (
+                  <Text className="text-red-400 text-sm -mt-2">{error}</Text>
+                ) : null}
+
                 <View className="flex-row items-center justify-between">
                   <TouchableOpacity
                     onPress={() => setRemember((p) => !p)}
@@ -87,7 +102,11 @@ const SignInScreen = () => {
                   </TouchableOpacity>
                 </View>
 
-                <ButtonPrimary title="Sign in" className="mt-8" />
+                <ButtonPrimary
+                  title="Sign in"
+                  className="mt-8"
+                  onPress={handleSignIn}
+                />
 
                 <TouchableOpacity onPress={() => router.push("/(auth)/sign-up")}>
                   <Text className="text-white text-center mt-4">Create account</Text>

@@ -7,13 +7,16 @@ import {
   ScrollView,
   Text,
   TextInput,
+  TouchableOpacity,
   TouchableWithoutFeedback,
   View,
 } from "react-native";
 import { RectangleEllipsis, User } from "lucide-react-native";
 import ButtonPrimary from "../../components/ButtonPrimary";
+import { useRouter } from "expo-router";
 
 const SignUpScreen = () => {
+  const router = useRouter();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -31,7 +34,7 @@ const SignUpScreen = () => {
     }
 
     setError("");
-    // TODO: hook with signup auth flow
+    router.replace("/(tabs)/marketplace");
   };
 
   return (
@@ -99,6 +102,10 @@ const SignUpScreen = () => {
                   className="mt-2"
                   onPress={handleSignUp}
                 />
+
+                <TouchableOpacity onPress={() => router.push("/(auth)/sign-in")}>
+                  <Text className="text-white text-center mt-4">Back to sign in</Text>
+                </TouchableOpacity>
               </View>
             </View>
           </ScrollView>
