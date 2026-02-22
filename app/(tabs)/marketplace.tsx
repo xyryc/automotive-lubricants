@@ -1,3 +1,4 @@
+import { LinearGradient } from "expo-linear-gradient";
 import {
   Bell,
   Bike,
@@ -20,6 +21,7 @@ import {
   SafeAreaView,
   useSafeAreaInsets,
 } from "react-native-safe-area-context";
+import Categories from "@/components/Categories";
 
 const categories = [
   { id: "cars", title: "Cars", icon: Car },
@@ -108,9 +110,23 @@ export default function MarketplaceScreen() {
       </View>
 
       <ScrollView
+        contentContainerStyle={{
+          paddingVertical: 32,
+          backgroundColor: "white",
+        }}
         bounces={false}
         showsVerticalScrollIndicator={false}
-      ></ScrollView>
+      >
+        <ScrollView horizontal className="px-5">
+          <Categories />
+
+          <Categories />
+
+          <Categories />
+
+          <Categories />
+        </ScrollView>
+      </ScrollView>
     </SafeAreaView>
   );
 }
