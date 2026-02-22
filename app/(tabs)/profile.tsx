@@ -1,5 +1,5 @@
 import { useRouter } from "expo-router";
-import { ImageBackground, Text, View } from "react-native";
+import { Image, ImageBackground, Text, View } from "react-native";
 import {
   SafeAreaView,
   useSafeAreaInsets,
@@ -53,9 +53,11 @@ export default function ProfileScreen() {
       <View className="flex-1 px-5 py-20 bg-primary">
         <View className="rounded-2xl border border-[#E5E7EB] bg-[#F8FAFC] p-5">
           <View className="h-14 w-14 rounded-full bg-[#0F172A] items-center justify-center">
-            <Text className="text-white text-xl font-bold">
-              {username.charAt(0).toUpperCase()}
-            </Text>
+            <Image
+              source={require("@/assets/user.png")}
+              style={{ width: 40, height: 40, borderRadius: 999 }}
+              resizeMode="contain"
+            />
           </View>
 
           <Text className="mt-4 text-sm text-[#64748B]">Signed in as</Text>

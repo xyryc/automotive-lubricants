@@ -20,6 +20,7 @@ import {
 import Categories from "@/components/Categories";
 import ProductCard from "@/components/ProductCard";
 import Banner from "@/components/Banner";
+import { useAuthStore } from "@/stores/authStore";
 
 const categoryData = [
   { id: "car", name: "Car", image: require("@/assets/car.png") },
@@ -64,6 +65,9 @@ const productData = [
 export default function MarketplaceScreen() {
   const insets = useSafeAreaInsets();
 
+  const session = useAuthStore((s) => s.session);
+  const username = session?.username || "Guest";
+
   return (
     <SafeAreaView
       className="flex-1 bg-[#EDEDED]"
@@ -84,7 +88,7 @@ export default function MarketplaceScreen() {
         showsVerticalScrollIndicator={false}
       >
         <ImageBackground
-          source={require("../../assets/background.png")}
+          source={require("@/assets/background.png")}
           resizeMode="stretch"
           style={{
             paddingHorizontal: 16,
@@ -101,13 +105,13 @@ export default function MarketplaceScreen() {
           >
             <View className="flex-row items-center">
               <Image
-                source={require("../../assets/icon.png")}
+                source={require("@/assets/user.png")}
                 style={{ width: 40, height: 40, borderRadius: 999 }}
                 resizeMode="contain"
               />
 
               <Text className="ml-2 text-white text-base font-semibold">
-                Hasan Mahmud
+                {username}
               </Text>
             </View>
 
