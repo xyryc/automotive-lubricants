@@ -23,11 +23,11 @@ import {
 } from "react-native-safe-area-context";
 import Categories from "@/components/Categories";
 
-const categories = [
-  { id: "cars", title: "Cars", icon: Car },
-  { id: "bikes", title: "Bikes", icon: Bike },
-  { id: "cng", title: "CNG", icon: Fuel },
-  { id: "truck", title: "Truck &\nBuses", icon: Truck },
+const categoryData = [
+  { id: "car", name: "Car", image: require("@/assets/car.png") },
+  { id: "bike", name: "Bike", image: require("@/assets/bike.png") },
+  { id: "cng", name: "CNG", image: require("@/assets/cng.png") },
+  { id: "truck", name: "Truck & Buses", image: require("@/assets/bus.png") },
 ];
 
 export default function MarketplaceScreen() {
@@ -117,14 +117,11 @@ export default function MarketplaceScreen() {
         bounces={false}
         showsVerticalScrollIndicator={false}
       >
+        {/* categories */}
         <ScrollView horizontal className="px-5">
-          <Categories />
-
-          <Categories />
-
-          <Categories />
-
-          <Categories />
+          {categoryData.map((item) => (
+            <Categories key={item.id} name={item.name} image={item.image} />
+          ))}
         </ScrollView>
       </ScrollView>
     </SafeAreaView>
