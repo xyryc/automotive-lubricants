@@ -118,10 +118,43 @@ export default function MarketplaceScreen() {
         showsVerticalScrollIndicator={false}
       >
         {/* categories */}
-        <ScrollView horizontal className="px-5">
+        <ScrollView horizontal className="px-5 h-36">
           {categoryData.map((item) => (
             <Categories key={item.id} name={item.name} image={item.image} />
           ))}
+        </ScrollView>
+
+        {/* what's new banners */}
+        <Text className="text-2xl font-bold text-[#3B3B3B] px-5 mt-8 mb-4">
+          What's New
+        </Text>
+
+        <ScrollView
+          showsHorizontalScrollIndicator={false}
+          horizontal
+          className="px-5"
+        >
+          <Image
+            source={require("@/assets/banner1.png")}
+            style={{
+              width: 280,
+              height: 148,
+              borderRadius: 8,
+              marginRight: 16,
+            }}
+            resizeMode="stretch"
+          />
+
+          <Image
+            source={require("@/assets/banner2.jpg")}
+            style={{
+              width: 280,
+              height: 148,
+              borderRadius: 8,
+              marginRight: 16,
+            }}
+            resizeMode="stretch"
+          />
         </ScrollView>
       </ScrollView>
     </SafeAreaView>
