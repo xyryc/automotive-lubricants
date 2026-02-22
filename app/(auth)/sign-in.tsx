@@ -25,9 +25,9 @@ import { showAlert } from "@/lib/alert";
 const SignInScreen = () => {
   const router = useRouter();
 
-  const [username, setUsername] = useState("shl0145");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [remember, setRemember] = useState(true);
+  const [remember, setRemember] = useState(false);
   const [error, setError] = useState("");
 
   const login = useAuthStore((s) => s.login);
