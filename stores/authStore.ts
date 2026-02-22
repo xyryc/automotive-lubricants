@@ -10,6 +10,8 @@ type AuthState = {
   hydrated: boolean;
   hydrate: () => Promise<void>;
   signup: (username: string, password: string) => Promise<void>;
+  login: (username: string, password: string) => Promise<void>;
+  logout: () => Promise<void>;
 };
 
 const USERS_KEY = "users";
@@ -59,5 +61,26 @@ export const useAuthStore = create<AuthState>((set, get) => ({
     ]);
 
     set({ users: nextUsers, session });
+  },
+
+  login: async (username, password) => {
+    const { users } = get();
+    // login
+    const user = users.find(
+      (u) =>
+        u.username.trim().toLowerCase() === username.trim().toLowerCase() &&
+        u.password === password,
+    );
+
+    if (!user) throw new Error("Invalid username or password");
+
+    const session = { id: user.id, username: user.username };
+    await AsyncStorage.setItem(SESSION_KEY, JSON.stringify(session));
+    set({ session });
+  },
+
+  logout: async () => {
+    await AsyncStorage.removeItem(SESSION_KEY);
+    set({ session: null });
   },
 }));

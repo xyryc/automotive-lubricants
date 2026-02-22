@@ -19,6 +19,8 @@ import {
 } from "lucide-react-native";
 import ButtonPrimary from "../../components/ButtonPrimary";
 import { useRouter } from "expo-router";
+import { useAuthStore } from "@/stores/authStore";
+import { showAlert } from "@/lib/alert";
 
 const SignInScreen = () => {
   const router = useRouter();
@@ -28,14 +30,16 @@ const SignInScreen = () => {
   const [remember, setRemember] = useState(true);
   const [error, setError] = useState("");
 
-  const handleSignIn = () => {
-    if (!username.trim() || !password) {
-      setError("Please enter username and password");
-      return;
-    }
+  const login = useAuthStore((s) => s.login);
 
-    setError("");
-    router.replace("/(tabs)/marketplace");
+  const handleSignIn = async () => {
+    try {
+      await login(username, password);
+      showAlert("success", "Login successful");
+      router.replace("/(tabs)/marketplace");
+    } catch (e: any) {
+      showAlert("error", "Login failed", e?.message || "Invalid credentials");
+    }
   };
 
   return (

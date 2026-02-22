@@ -1,15 +1,31 @@
-import type DropdownAlert from "react-native-dropdownalert";
+import {
+  DropdownAlertData,
+  DropdownAlertType,
+} from "react-native-dropdownalert";
 
-let alertRef: DropdownAlert | null = null;
+let alert = (_data: DropdownAlertData) =>
+  Promise.resolve<DropdownAlertData>(_data);
 
-export const setAlertRef = (ref: DropdownAlert | null) => {
-  alertRef = ref;
+export const setAlertHandler = (
+  func: (data: DropdownAlertData) => Promise<DropdownAlertData>,
+) => {
+  alert = func;
 };
 
-export const showAlert = (
+export const showAlert = async (
   type: "success" | "error" | "info",
   title: string,
   message?: string,
 ) => {
-  alertRef?.alertWithType(type, title, message || "");
+  const mapType = {
+    success: DropdownAlertType.Success,
+    error: DropdownAlertType.Error,
+    info: DropdownAlertType.Info,
+  };
+
+  await alert({
+    type: mapType[type],
+    title,
+    message: message || "",
+  });
 };
