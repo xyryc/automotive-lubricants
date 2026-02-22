@@ -19,6 +19,7 @@ import {
 } from "react-native-safe-area-context";
 import Categories from "@/components/Categories";
 import ProductCard from "@/components/ProductCard";
+import Banner from "@/components/Banner";
 
 const categoryData = [
   { id: "car", name: "Car", image: require("@/assets/car.png") },
@@ -166,33 +167,7 @@ export default function MarketplaceScreen() {
           What's New
         </Text>
 
-        <ScrollView
-          showsHorizontalScrollIndicator={false}
-          horizontal
-          className="px-5"
-        >
-          <Image
-            source={require("@/assets/banner1.png")}
-            style={{
-              width: 280,
-              height: 148,
-              borderRadius: 8,
-              marginRight: 16,
-            }}
-            resizeMode="stretch"
-          />
-
-          <Image
-            source={require("@/assets/banner2.jpg")}
-            style={{
-              width: 280,
-              height: 148,
-              borderRadius: 8,
-              marginRight: 16,
-            }}
-            resizeMode="stretch"
-          />
-        </ScrollView>
+        <Banner />
 
         {/* featured products */}
         <Text className="text-2xl font-bold text-[#3B3B3B] px-5 mt-8 mb-4">
