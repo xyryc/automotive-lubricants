@@ -1,20 +1,10 @@
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Text, TextInput, TouchableOpacity, View } from "react-native";
-import {
-  Check,
-  CircleQuestionMark,
-  RectangleEllipsis,
-  Square,
-  SquareCheck,
-  User,
-} from "lucide-react-native";
+import { RectangleEllipsis, User } from "lucide-react-native";
 import ButtonPrimary from "../../components/ButtonPrimary";
-import { useRouter } from "expo-router";
 
-const SignInScreen = () => {
-  const router = useRouter();
-
+const SignUpScreen = () => {
   const [username, setUsername] = useState("shl0145");
   const [password, setPassword] = useState("");
   const [remember, setRemember] = useState(true);
@@ -48,34 +38,11 @@ const SignInScreen = () => {
             />
           </View>
 
-          <View className="flex-row items-center justify-between">
-            <TouchableOpacity
-              onPress={() => setRemember((p) => !p)}
-              className="flex-row items-center"
-              activeOpacity={0.8}
-            >
-              <View className="h-5 w-5 rounded items-center justify-center bg-secondary">
-                {remember ? <Check size={16} color="white" /> : null}
-              </View>
-              <Text className="ml-3 text-[#F0F3F9] text-xl font-bold">
-                Remember username
-              </Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity>
-              <CircleQuestionMark size={18} color="white" />
-            </TouchableOpacity>
-          </View>
-
-          <ButtonPrimary title="Sign in" className="mt-8" />
-
-          <TouchableOpacity onPress={() => router.push("/(auth)/sign-up")}>
-            <Text className="text-white text-center mt-4">Create account</Text>
-          </TouchableOpacity>
+          <ButtonPrimary title="Sign up" className="mt-8" />
         </View>
       </View>
     </SafeAreaView>
   );
 };
 
-export default SignInScreen;
+export default SignUpScreen;
