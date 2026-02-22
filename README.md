@@ -50,6 +50,11 @@ npm expo run:android
 - Session is stored locally
 - Logout clears session and returns to sign in
 
+## Test Credentials
+
+- Username: `shl0145`
+- Password: `123456`
+
 ## Notes
 
 - Alerts are shown via `react-native-dropdownalert` mounted in `app/_layout.tsx`.
